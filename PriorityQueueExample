@@ -1,0 +1,23 @@
+import java.util.PriorityQueue;
+
+public class PriorityQueueExample {
+    public static void main(String[] args) {
+        // Create a PriorityQueue of integers
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        // Add elements to the priority queue
+        pq.add(25);
+        pq.add(15);
+        pq.add(35);
+        pq.add(10);
+        pq.add(30);
+
+        // Display the head element (smallest element)
+        System.out.println("Head of the queue: " + pq.peek());
+
+        // Remove and display elements in priority order
+        while (!pq.isEmpty()) {
+            System.out.println("Removed: " + pq.poll());
+        }
+    }
+}
