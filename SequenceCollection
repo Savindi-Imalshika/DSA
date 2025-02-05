@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class SequenceCollection {
+    public static void main(String[] args) {
+        // Declare and initialize a Queue as a LinkedList
+        Queue<Integer> queueCollection = new LinkedList<>();
+
+        // Add five integer elements
+        queueCollection.add(5);
+        queueCollection.add(15);
+        queueCollection.add(25);
+        queueCollection.add(35);
+        queueCollection.add(45);
+
+        // Print the queue elements
+        System.out.println("Queue elements: " + queueCollection);
+
+        // Peek the first element
+        System.out.println("First element (peek): " + queueCollection.peek());
+
+        // Remove the first element
+        System.out.println("Removed element: " + queueCollection.poll());
+
+        // Print the queue after removal
+        System.out.println("Queue after removal: " + queueCollection);
+
+        // Iterate over elements
+        System.out.println("Iterating over remaining elements:");
+        for (int num : queueCollection) {
+            System.out.println(num);
+        }
+    }
+}
