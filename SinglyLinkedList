@@ -1,0 +1,118 @@
+class SinglyLinkedList {
+    // Node class representing each element in the list
+    static class Node {
+        int data;
+        Node next;
+
+        // Constructor
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node head; // Head of the list
+    private int size;  // Size of the list
+
+    // Constructor
+    public SinglyLinkedList() {
+        this.head = null;
+        this.size = 0;
+    }
+
+    // Insert at the end
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+        size++;
+        System.out.println("Inserted: " + data);
+    }
+
+    // Delete a node by value
+    public void delete(int data) {
+        if (head == null) {
+            System.out.println("List is empty! Cannot delete.");
+            return;
+        }
+
+        // If the node to be deleted is the head
+        if (head.data == data) {
+            head = head.next;
+            size--;
+            System.out.println("Deleted: " + data);
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null && temp.next.data != data) {
+            temp = temp.next;
+        }
+
+        if (temp.next == null) {
+            System.out.println("Element not found!");
+        } else {
+            temp.next = temp.next.next;
+            size--;
+            System.out.println("Deleted: " + data);
+        }
+    }
+
+    // Search for a node
+    public boolean search(int data) {
+        Node temp = head;
+        while (temp != null) {
+            if (temp.data == data) {
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    // Display the list
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        Node temp = head;
+        System.out.print("Linked List: ");
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("NULL");
+    }
+
+    // Get the size of the list
+    public int getSize() {
+        return size;
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+
+        list.display();
+
+        System.out.println("Is 20 present? " + list.search(20)); // true
+        System.out.println("Is 50 present? " + list.search(50)); // false
+
+        list.delete(20);
+        list.display();
+
+        System.out.println("Size of the list: " + list.getSize());
+    }
+}
