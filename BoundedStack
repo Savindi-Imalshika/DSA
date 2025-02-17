@@ -1,0 +1,67 @@
+class BoundedStack<T> {
+    private T[] stack;
+    private int top;
+    private int capacity;
+
+    @SuppressWarnings("unchecked")
+    public BoundedStack(int capacity) {
+        this.capacity = capacity;
+        stack = (T[]) new Object[capacity];
+        top = -1;
+    }
+
+    // Push method (adds element to stack)
+    public void push(T item) {
+        if (isFull()) {
+            throw new IllegalStateException("Stack is full. Cannot push.");
+        }
+        stack[++top] = item;
+    }
+
+    // Pop method (removes and returns top element)
+    public T pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty. Cannot pop.");
+        }
+        return stack[top--];
+    }
+
+    // Peek method (returns top element without removing)
+    public T peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty. Cannot peek.");
+        }
+        return stack[top];
+    }
+
+    // Check if stack is empty
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    // Check if stack is full
+    public boolean isFull() {
+        return top == capacity - 1;
+    }
+
+    // Get current size of stack
+    public int size() {
+        return top + 1;
+    }
+
+    public static void main(String[] args) {
+        BoundedStack<Integer> stack = new BoundedStack<>(5);
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        
+        System.out.println("Top element: " + stack.peek());  // Output: 30
+        System.out.println("Stack size: " + stack.size());   // Output: 3
+
+        System.out.println("Popped: " + stack.pop());        // Output: 30
+        System.out.println("Popped: " + stack.pop());        // Output: 20
+
+        System.out.println("Stack size after popping: " + stack.size()); // Output: 1
+    }
+}
